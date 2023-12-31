@@ -1,5 +1,8 @@
 import RPi.GPIO as GPIO
 import time
+import os
+import signal
+import subprocess
 
 led_on = False
 count = 0
@@ -23,16 +26,21 @@ def flashLED(count):
 # setupGPIO()
 # flashLED(count)
 def switch(ev=None):
-    global led_on, count
+    global led_on, count, gnu_radio_script
     led_on = not led_on
     count += 1
 
     if led_on == True:
         print("Turning on\tcount: " + str(count))
         GPIO.output(18, GPIO.HIGH)
+        #start recording the radio
+        print('Start radio recording') 
+        gnu_radio_script = subprocess.Popen("~/Desktop/Aurora_Radio/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
     else:
         print("Turning off\tcount: " + str(count))
         GPIO.output(18, GPIO.LOW)
+        print('Killing Radio Recording')
+        os.killpg(os.getpgid(gnu_radio_script.pid), signal.SIGTERM)
 
 
 def detectButtonPress():
@@ -66,3 +74,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Killing LEDs")
         GPIO.output(18, GPIO.LOW)
+        
