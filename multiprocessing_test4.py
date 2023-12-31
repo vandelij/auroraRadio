@@ -1,7 +1,7 @@
 import os
 import signal
 import subprocess
-import time
+import time 
 
 
 gnu_radio_script = subprocess.Popen("~/Desktop/Aurora_Radio/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
