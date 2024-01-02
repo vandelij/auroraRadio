@@ -65,7 +65,7 @@ def waitForEvents():
             if returncode is not None: # the second script has terminated, else do nothing
                 if returncode != 0:
                     print('The GNU radio code killed itself. Turning off listening LED')
-                    led_on = not led_on
+                    led_on = not led_on # remember to let the code know the LED is off!
                     GPIO.output(18, GPIO.LOW)
 
 
