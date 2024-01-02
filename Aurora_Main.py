@@ -95,4 +95,9 @@ if __name__ == "__main__":
         print("Killing LEDs")
         GPIO.output(18, GPIO.LOW)
         GPIO.output(23, GPIO.LOW)
-        
+    
+    # catch all other issues and turn off the LEDs
+    except Exception:
+        print('An exception occured. Killing LEDs')
+        GPIO.output(18, GPIO.LOW)
+        GPIO.output(23, GPIO.LOW)
