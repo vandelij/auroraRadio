@@ -8,6 +8,7 @@ import os
 import signal
 import subprocess
 
+global led_on
 led_on = False # LED  on pin 18 showing the radio is recording
 count = 0
 
@@ -53,8 +54,17 @@ def detectButtonPress():
 
 
 def waitForEvents():
+    global led_on
     while True:
-        time.sleep(1)
+        time.sleep(1) 
+        if led_on:  # only check the status of the gnu radio code if it has been called 
+            returncode = gnu_radio_script.poll() # check on the gnu radio script
+            if returncode is not None: # the second script has terminated, else do nothing
+                if returncode != 0:
+                    print('The GNU radio code killed itself. Turning off listening LED')
+                    led_on = not led_on
+                    GPIO.output(18, GPIO.LOW)
+
 
 def main(): 
     print("# # # Aurora Radio # # #")

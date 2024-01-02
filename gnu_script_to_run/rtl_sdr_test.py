@@ -145,7 +145,7 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
         now.strftime("%Y-%m-%d %H:%M:%S")
         date_and_time = now.strftime("%Y_%m_%d__%H_%M_%S")
         save_directory = '/home/vandelij/Desktop/Aurora_Radio/test_recordings/'
-        save_file_name = save_directory + 'aurora_radio_recording_date_EST' + date_and_time
+        save_file_name = save_directory + 'aurora_radio_recording_date_EST_' + date_and_time
         print('PWD:')  
         print(os.getcwd())
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, save_file_name, False)
