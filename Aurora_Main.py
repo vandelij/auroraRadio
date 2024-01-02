@@ -1,5 +1,8 @@
-##########################
-
+#################################
+# Author: Jacob van de Lindt
+# Date: Jan 2nd, 2024
+# PFSC Aurora Expidition Jan 2024
+##################################
 
 
 import RPi.GPIO as GPIO
