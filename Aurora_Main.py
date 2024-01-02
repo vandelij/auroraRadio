@@ -1,3 +1,7 @@
+##########################
+
+
+
 import RPi.GPIO as GPIO
 import time
 import os
@@ -35,7 +39,7 @@ def switch(ev=None):
         GPIO.output(18, GPIO.HIGH)
         #start recording the radio
         print('Start radio recording') 
-        gnu_radio_script = subprocess.Popen("~/Desktop/Aurora_Radio/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
+        gnu_radio_script = subprocess.Popen("~/Desktop/Aurora_Radio/gnu_script_to_run/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
     else:
         print("Turning off\tcount: " + str(count))
         GPIO.output(18, GPIO.LOW)
