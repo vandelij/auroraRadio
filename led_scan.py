@@ -8,6 +8,7 @@ def setupGPIO():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(18, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def flashLED(count):
@@ -51,6 +52,9 @@ def main():
     print('Test of flashing LED')
     count = int(input('Enter the number of LEd flashes: '))
     setupGPIO()
+    print('turning on LED 23')
+    GPIO.output(23, GPIO.HIGH)
+    print('now flashing')
     flashLED(count)
 
     detectButtonPress()
@@ -66,3 +70,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Killing LEDs")
         GPIO.output(18, GPIO.LOW)
+        GPIO.output(23, GPIO.LOW)

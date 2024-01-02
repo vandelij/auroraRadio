@@ -10,9 +10,11 @@
 # GNU Radio version: 3.10.5.1
 
 ########
-# New Stuff to Add:
+# New Stuff to Add: TODO: add to gnu radio code output
 import datetime
 from packaging.version import Version as StrictVersion
+import os
+# End new stuff to Add: TODO: add to gnu radio code output
 
 if __name__ == '__main__':
     import ctypes
@@ -138,12 +140,17 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
                 6.76))
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(Volume)
 
-        # New line of code 
+        # New line of code TODO: ADD TO GNU RADIO OUTPUT
         now = datetime.datetime.now()
         now.strftime("%Y-%m-%d %H:%M:%S")
         date_and_time = now.strftime("%Y_%m_%d__%H_%M_%S")
-        save_file_name = 'aurora_radio_recording_date' + date_and_time  
+        save_directory = '/home/vandelij/Desktop/Aurora_Radio/test_recordings/'
+        save_file_name = save_directory + 'aurora_radio_recording_date_EST' + date_and_time
+        print('PWD:')  
+        print(os.getcwd())
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, save_file_name, False)
+        # End new line of code TODO: ADD TO GNU RADIO OUTPUT
+
         self.blocks_file_sink_0.set_unbuffered(True)
         self.audio_sink_0 = audio.sink(48000, '', True)
         self.analog_wfm_rcv_0 = analog.wfm_rcv(

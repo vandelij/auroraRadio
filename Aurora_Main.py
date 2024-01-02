@@ -8,13 +8,14 @@ import os
 import signal
 import subprocess
 
-led_on = False
+led_on = False # LED  on pin 18 showing the radio is recording
 count = 0
 
 def setupGPIO():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(18, GPIO.OUT, initial=GPIO.LOW)
+    GPIO.setup(23, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(25, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def flashLED(count):
@@ -55,18 +56,20 @@ def waitForEvents():
     while True:
         time.sleep(1)
 
-def main():
-    print("# # # LED Program # # #")
+def main(): 
+    print("# # # Aurora Radio # # #")
+    print("# # # Jacob van de Lindt. 2024 January PSFC Aurora Expidition # # #")
     print("LED:\tpin 18")
     print("Button:\tpin 25")
 
     print('Test of flashing LED')
-    count = int(input('Enter the number of LEd flashes: '))
     setupGPIO()
+    GPIO.output(23, GPIO.HIGH) # turn on LED showing the script is running
+    count = int(input('Enter the number of LED flashes: '))
     flashLED(count)
 
     detectButtonPress()
-    print('Now waiting for the user to push the button (short with the grey-brown wire to ground)')
+    print('Now waiting for the user to push the button to start radio recording')
     waitForEvents()
     print('Program exiting')
 
@@ -78,4 +81,5 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Killing LEDs")
         GPIO.output(18, GPIO.LOW)
+        GPIO.output(23, GPIO.LOW)
         
