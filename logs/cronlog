@@ -1,14 +1,90 @@
-qt.qpa.xcb: could not connect to display 
-qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
-This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
 
-Available platform plugins are: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, xcb.
+RtApiPulse::DeviceInfo pa_context_connect() failed: Connection refused
 
-Aborted
-qt.qpa.xcb: could not connect to display 
-qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found.
-This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
 
-Available platform plugins are: eglfs, linuxfb, minimal, minimalegl, offscreen, vnc, wayland-egl, wayland, wayland-xcomposite-egl, wayland-xcomposite-glx, xcb.
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Unknown error 524.
 
-Aborted
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Invalid argument.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:0,0), Unknown error 524.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:1,0), Unknown error 524.
+
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Reattached kernel driver
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.3 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+Using device #0 Nooelec NESDR SMArt v5 SN: 00000001
+Detached kernel driver
+Found Rafael Micro R820T tuner
+[R82XX] PLL not locked!
+[R82XX] PLL not locked!
+audio_alsa_sink :error: [default]: Unknown error 524
+PWD:
+/home/vandelij/Desktop/Aurora_Radio
+Traceback (most recent call last):
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 152, in <module>
+    main()
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 130, in main
+    tb = top_block_cls()
+         ^^^^^^^^^^^^^^^
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 93, in __init__
+    self.audio_sink_0 = audio.sink(48000, '', True)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: audio_alsa_sink
+Reattached kernel driver
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+
+RtApiPulse::DeviceInfo pa_context_connect() failed: Connection refused
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Unknown error 524.
+
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Invalid argument.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:0,0), Unknown error 524.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:1,0), Unknown error 524.
+
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Reattached kernel driver
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.3 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+Using device #0 Nooelec NESDR SMArt v5 SN: 00000001
+Detached kernel driver
+Found Rafael Micro R820T tuner
+[R82XX] PLL not locked!
+[R82XX] PLL not locked!
+audio_alsa_sink :error: [default]: Unknown error 524
+PWD:
+/home/vandelij/Desktop/Aurora_Radio
+Traceback (most recent call last):
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 152, in <module>
+    main()
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 130, in main
+    tb = top_block_cls()
+         ^^^^^^^^^^^^^^^
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 93, in __init__
+    self.audio_sink_0 = audio.sink(48000, '', True)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: audio_alsa_sink
+Reattached kernel driver

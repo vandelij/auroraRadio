@@ -79,7 +79,7 @@ class headless_FM(gr.top_block):
                 6.76))
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(Volume)
         # New line of code TODO: ADD TO GNU RADIO OUTPUT
-        now = datetime.datetime.now()
+        now = datetime.datetime.now() 
         now.strftime("%Y-%m-%d %H:%M:%S")
         date_and_time = now.strftime("%Y_%m_%d__%H_%M_%S")
         save_directory = '/home/vandelij/Desktop/Aurora_Radio/test_recordings/'
@@ -128,7 +128,7 @@ class headless_FM(gr.top_block):
 
 def main(top_block_cls=headless_FM, options=None):
     tb = top_block_cls()
-
+    tb.start()
     def sig_handler(sig=None, frame=None):
         tb.stop()
         tb.wait()
@@ -138,7 +138,7 @@ def main(top_block_cls=headless_FM, options=None):
     signal.signal(signal.SIGINT, sig_handler)
     signal.signal(signal.SIGTERM, sig_handler)
 
-    tb.start()
+    #tb.start()
 
     try:
         input('Press Enter to quit: ')

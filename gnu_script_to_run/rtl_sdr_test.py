@@ -138,7 +138,7 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
                 25000,
                 window.WIN_HAMMING,
                 6.76))
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(Volume)
+        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(Volume) 
 
         # New line of code TODO: ADD TO GNU RADIO OUTPUT
         now = datetime.datetime.now()
