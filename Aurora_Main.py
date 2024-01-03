@@ -44,7 +44,8 @@ def switch(ev=None):
         GPIO.output(18, GPIO.HIGH)
         #start recording the radio
         print('Start radio recording') 
-        gnu_radio_script = subprocess.Popen("~/Desktop/Aurora_Radio/gnu_script_to_run/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
+        # gnu_radio_script = subprocess.Popen("~/Desktop/Aurora_Radio/gnu_script_to_run/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
+        gnu_radio_script = subprocess.Popen("/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
     else:
         print("Turning off\tcount: " + str(count))
         GPIO.output(18, GPIO.LOW)
@@ -78,8 +79,8 @@ def main():
     print('Test of flashing LED')
     setupGPIO()
     GPIO.output(23, GPIO.HIGH) # turn on LED showing the script is running
-    count = int(input('Enter the number of LED flashes: '))
-    flashLED(count)
+    numflash = 4#int(input('Enter the number of LED flashes: '))
+    flashLED(numflash)
 
     detectButtonPress()
     print('Now waiting for the user to push the button to start radio recording')
