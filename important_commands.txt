@@ -8,5 +8,5 @@ sudo crontab -e
 #Start the gnu radio GUI:
 gnuradio-companion &
 
-#Reboot the pi 
+#Reboot the pi ;) 
 sudo reboot
