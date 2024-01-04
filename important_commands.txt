@@ -2,8 +2,9 @@
 
 #Open the crontab and add the launch task (copy-paste the @reboot lin into it): 
 sudo crontab -e
-@reboot sh /home/vandelij/Desktop/Aurora_Radio/launcher.sh >/home/vandelij/Desktop/Aurora_Radio/logs/cronlog 2>&1
+#@reboot sh /home/vandelij/Desktop/Aurora_Radio/launcher.sh >/home/vandelij/Desktop/Aurora_Radio/logs/cronlog 2>&1
 
+@reboot su -l vandelij -c '/usr/bin/python3 /home/vandelij/Desktop/Aurora_Radio/Aurora_Main.py' >> /home/vandelij/Desktop/Aurora_Radio/logs/log.txt 2>&1
 #Start the gnu radio GUI:
 gnuradio-companion &
 

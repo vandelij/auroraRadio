@@ -127,8 +127,9 @@ class headless_FM(gr.top_block):
 
 
 def main(top_block_cls=headless_FM, options=None):
+    print('The headless pid is: ', os.getpid())
     tb = top_block_cls()
-    tb.start()
+
     def sig_handler(sig=None, frame=None):
         tb.stop()
         tb.wait()
@@ -138,13 +139,13 @@ def main(top_block_cls=headless_FM, options=None):
     signal.signal(signal.SIGINT, sig_handler)
     signal.signal(signal.SIGTERM, sig_handler)
 
-    #tb.start()
+    tb.start()
 
-    try:
-        input('Press Enter to quit: ')
-    except EOFError:
-        pass
-    tb.stop()
+    # try:
+    #     input('Press Enter to quit: ')
+    # except EOFError:
+    #     pass
+    # tb.stop()
     tb.wait()
 
 

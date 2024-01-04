@@ -11,6 +11,8 @@ import os
 import signal
 import subprocess
 
+
+
 global led_on
 led_on = False # LED  on pin 18 showing the radio is recording
 count = 0
@@ -51,7 +53,13 @@ def switch(ev=None):
         print("Turning off\tcount: " + str(count))
         GPIO.output(18, GPIO.LOW)
         print('Killing Radio Recording')
-        os.killpg(os.getpgid(gnu_radio_script.pid), signal.SIGTERM)
+
+        try:
+            print('The Aurora_Main pid is: ', os.getpid())
+            os.killpg(os.getpgid(gnu_radio_script.pid), signal.SIGTERM)
+
+        except Exception:
+            print('HELPP Couldnt kill the kids!')
 
 
 def detectButtonPress():
@@ -66,6 +74,7 @@ def waitForEvents():
             returncode = gnu_radio_script.poll() # check on the gnu radio script
             if returncode is not None: # the second script has terminated, else do nothing
                 if returncode != 0:
+                    print('Return code:', returncode)
                     print('The GNU radio code killed itself. Turning off listening LED')
                     led_on = not led_on # remember to let the code know the LED is off!
                     GPIO.output(18, GPIO.LOW)

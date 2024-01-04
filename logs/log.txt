@@ -1,0 +1,244 @@
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+
+RtApiPulse::DeviceInfo pa_context_connect() failed: Connection refused
+
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Invalid argument.
+
+
+RtApiAlsa::getDeviceInfo: pcm device (hw:0,0) data format not supported by RtAudio.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:1,0), Unknown error 524.
+
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Reattached kernel driver
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.3 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+Using device #0 Nooelec NESDR SMArt v5 SN: 00000001
+Detached kernel driver
+Found Rafael Micro R820T tuner
+[R82XX] PLL not locked!
+[R82XX] PLL not locked!
+Allocating 15 zero-copy buffers
+aUThe headless pid is:  1527
+PWD:
+/root
+Reattached kernel driver
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+
+RtApiPulse::DeviceInfo pa_context_connect() failed: Connection refused
+
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Invalid argument.
+
+
+RtApiAlsa::getDeviceInfo: pcm device (hw:0,0) data format not supported by RtAudio.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:1,0), Unknown error 524.
+
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.4 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+The headless pid is:  2218
+Traceback (most recent call last):
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 153, in <module>
+    main()
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 131, in main
+    tb = top_block_cls()
+         ^^^^^^^^^^^^^^^
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 56, in __init__
+    self.osmosdr_source_0 = osmosdr.source(
+                            ^^^^^^^^^^^^^^^
+RuntimeError: No devices specified via device arguments.
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+
+RtApiPulse::DeviceInfo pa_context_connect() failed: Connection refused
+
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Invalid argument.
+
+
+RtApiAlsa::getDeviceInfo: pcm device (hw:0,0) data format not supported by RtAudio.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:1,0), Unknown error 524.
+
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.4 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+The headless pid is:  2288
+Traceback (most recent call last):
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 153, in <module>
+    main()
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 131, in main
+    tb = top_block_cls()
+         ^^^^^^^^^^^^^^^
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 56, in __init__
+    self.osmosdr_source_0 = osmosdr.source(
+                            ^^^^^^^^^^^^^^^
+RuntimeError: No devices specified via device arguments.
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+
+RtApiPulse::DeviceInfo pa_context_connect() failed: Connection refused
+
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Invalid argument.
+
+
+RtApiAlsa::getDeviceInfo: pcm device (hw:0,0) data format not supported by RtAudio.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:1,0), Unknown error 524.
+
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.4 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+The headless pid is:  2403
+Traceback (most recent call last):
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 153, in <module>
+    main()
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 131, in main
+    tb = top_block_cls()
+         ^^^^^^^^^^^^^^^
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 56, in __init__
+    self.osmosdr_source_0 = osmosdr.source(
+                            ^^^^^^^^^^^^^^^
+RuntimeError: No devices specified via device arguments.
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+
+RtApiPulse::DeviceInfo pa_context_connect() failed: Connection refused
+
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (default), Invalid argument.
+
+
+RtApiAlsa::getDeviceInfo: pcm device (hw:0,0) data format not supported by RtAudio.
+
+
+RtApiAlsa::getDeviceInfo: snd_pcm_open error for device (hw:1,0), Unknown error 524.
+
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.4 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+The headless pid is:  2475
+Traceback (most recent call last):
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 153, in <module>
+    main()
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 131, in main
+    tb = top_block_cls()
+         ^^^^^^^^^^^^^^^
+  File "/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", line 56, in __init__
+    self.osmosdr_source_0 = osmosdr.source(
+                            ^^^^^^^^^^^^^^^
+RuntimeError: No devices specified via device arguments.
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.3 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+[INFO] Using format CF32.
+Segmentation fault
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.3 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+[INFO] Using format CF32.
+Segmentation fault
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Reattached kernel driver
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.3 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+Using device #0 Nooelec NESDR SMArt v5 SN: 00000001
+Detached kernel driver
+Found Rafael Micro R820T tuner
+[R82XX] PLL not locked!
+[R82XX] PLL not locked!
+Allocating 15 zero-copy buffers
+The headless pid is:  1564
+PWD:
+/home/vandelij
+Reattached kernel driver
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Reattached kernel driver
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.3 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+Using device #0 Nooelec NESDR SMArt v5 SN: 00000001
+Detached kernel driver
+Found Rafael Micro R820T tuner
+[R82XX] PLL not locked!
+[R82XX] PLL not locked!
+Allocating 15 zero-copy buffers
+The headless pid is:  1223
+PWD:
+/home/vandelij
+Reattached kernel driver
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Reattached kernel driver
+libusb: warning [libusb_exit] device 2.1 still referenced
+libusb: warning [libusb_exit] device 1.3 still referenced
+libusb: warning [libusb_exit] device 1.2 still referenced
+libusb: warning [libusb_exit] device 1.1 still referenced
+Using device #0 Nooelec NESDR SMArt v5 SN: 00000001
+Detached kernel driver
+Found Rafael Micro R820T tuner
+[R82XX] PLL not locked!
+[R82XX] PLL not locked!
+Allocating 15 zero-copy buffers
+aUThe headless pid is:  2029
+PWD:
+/home/vandelij
+Reattached kernel driver
+gr-osmosdr 0.2.0.0 (0.2.0) gnuradio 3.10.5.1
+built-in source types: file fcd rtl rtl_tcp uhd hackrf bladerf rfspace airspy airspyhf soapy redpitaya freesrp xtrx 
+[INFO] [UHD] linux; GNU C++ version 12.2.0; Boost_107400; UHD_4.3.0.0+ds1-5
