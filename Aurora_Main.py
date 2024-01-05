@@ -48,7 +48,8 @@ def switch(ev=None):
         print('Start radio recording') 
         #gnu_radio_script = subprocess.Popen("~/Desktop/Aurora_Radio/gnu_script_to_run/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
         #gnu_radio_script = subprocess.Popen("/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/rtl_sdr_test.py", shell=True, preexec_fn=os.setsid)
-        gnu_radio_script = subprocess.Popen("/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", shell=True, preexec_fn=os.setsid)
+        #gnu_radio_script = subprocess.Popen("/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_FM.py", shell=True, preexec_fn=os.setsid)
+        gnu_radio_script = subprocess.Popen("/home/vandelij/Desktop/Aurora_Radio/gnu_script_to_run/headless_Aurora.py", shell=True, preexec_fn=os.setsid)
     else:
         print("Turning off\tcount: " + str(count))
         GPIO.output(18, GPIO.LOW)
@@ -67,7 +68,7 @@ def detectButtonPress():
 
 
 def waitForEvents():
-    global led_on
+    global led_on, gnu_radio_script
     while True:
         time.sleep(1) 
         if led_on:  # only check the status of the gnu radio code if it has been called 
@@ -81,6 +82,7 @@ def waitForEvents():
 
 
 def main(): 
+    global led_on
     print("# # # Aurora Radio # # #")
     print("# # # Jacob van de Lindt. 2024 January PSFC Aurora Expidition # # #")
     print("LED:\tpin 18")
@@ -91,7 +93,7 @@ def main():
     GPIO.output(23, GPIO.HIGH) # turn on LED showing the script is running
     numflash = 4#int(input('Enter the number of LED flashes: '))
     flashLED(numflash)
-
+    print('The led status is originally: ', led_on)
     detectButtonPress()
     print('Now waiting for the user to push the button to start radio recording')
     waitForEvents()
@@ -103,13 +105,16 @@ if __name__ == "__main__":
 
     #turn off the LED when the program ends
     except KeyboardInterrupt:
+        global gnu_radio_script
         print("Killing LEDs")
         GPIO.output(18, GPIO.LOW)
         GPIO.output(23, GPIO.LOW)
+        print('Killing gnu radio script')
+        os.killpg(os.getpgid(gnu_radio_script.pid), signal.SIGTERM)
     
     # catch all other issues and turn off the LEDs
     except Exception:
-        global gnu_radio_script
+        #global gnu_radio_script
         print('An exception occured. Killing LEDs')
         GPIO.output(18, GPIO.LOW)
         GPIO.output(23, GPIO.LOW)
