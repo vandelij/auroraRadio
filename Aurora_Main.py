@@ -109,6 +109,9 @@ if __name__ == "__main__":
     
     # catch all other issues and turn off the LEDs
     except Exception:
+        global gnu_radio_script
         print('An exception occured. Killing LEDs')
         GPIO.output(18, GPIO.LOW)
         GPIO.output(23, GPIO.LOW)
+        print('Killing gnu radio script')
+        os.killpg(os.getpgid(gnu_radio_script.pid), signal.SIGTERM)
