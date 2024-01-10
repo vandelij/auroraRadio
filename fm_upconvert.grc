@@ -1,6 +1,6 @@
 options:
   parameters:
-    author: Jacob van de Lindt
+    author: ''
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: rtl_sdr_test
+    id: fm_upconvert
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: First test of an RTL-SDR
+    title: Not titled yet
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -42,7 +42,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [296, 12.0]
+    coordinate: [296, 16.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -54,7 +54,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 12]
+    coordinate: [184, 16.0]
     rotation: 0
     state: enabled
 - name: analog_wfm_rcv_0
@@ -71,7 +71,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [856, 204.0]
+    coordinate: [1072, 212.0]
     rotation: 0
     state: true
 - name: audio_sink_0
@@ -88,7 +88,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [904, 364.0]
+    coordinate: [1120, 364.0]
     rotation: 0
     state: true
 - name: blocks_file_sink_0
@@ -106,8 +106,25 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 276.0]
+    coordinate: [888, 268.0]
     rotation: 180
+    state: true
+- name: blocks_freqshift_cc_0
+  id: blocks_freqshift_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    freq: -125e6
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sample_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [424, 196.0]
+    rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
   id: blocks_multiply_const_vxx
@@ -124,7 +141,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [904, 292.0]
+    coordinate: [1120, 284.0]
     rotation: 180
     state: true
 - name: low_pass_filter_0
@@ -148,7 +165,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [448, 92.0]
+    coordinate: [664, 92.0]
     rotation: 0
     state: true
 - name: osmosdr_source_0
@@ -326,7 +343,7 @@ blocks:
     dc_offset_mode7: '0'
     dc_offset_mode8: '0'
     dc_offset_mode9: '0'
-    freq0: 102.5e6
+    freq0: 102.5e6 + 125e6
     freq1: 100e6
     freq10: 100e6
     freq11: 100e6
@@ -505,7 +522,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [104, 132.0]
+    coordinate: [104, 128.0]
     rotation: 0
     state: true
 - name: qtgui_sink_x_0
@@ -534,7 +551,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [424, 276.0]
+    coordinate: [640, 268.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0
@@ -554,17 +571,18 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [656, 116.0]
+    coordinate: [872, 116.0]
     rotation: 0
     state: true
 
 connections:
 - [analog_wfm_rcv_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_freqshift_cc_0, '0', low_pass_filter_0, '0']
+- [blocks_freqshift_cc_0, '0', qtgui_sink_x_0, '0']
 - [blocks_multiply_const_vxx_0, '0', audio_sink_0, '0']
 - [blocks_multiply_const_vxx_0, '0', blocks_file_sink_0, '0']
 - [low_pass_filter_0, '0', rational_resampler_xxx_0, '0']
-- [osmosdr_source_0, '0', low_pass_filter_0, '0']
-- [osmosdr_source_0, '0', qtgui_sink_x_0, '0']
+- [osmosdr_source_0, '0', blocks_freqshift_cc_0, '0']
 - [rational_resampler_xxx_0, '0', analog_wfm_rcv_0, '0']
 
 metadata:

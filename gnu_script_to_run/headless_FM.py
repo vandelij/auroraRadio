@@ -58,7 +58,7 @@ class headless_FM(gr.top_block):
         )
         self.osmosdr_source_0.set_time_unknown_pps(osmosdr.time_spec_t())
         self.osmosdr_source_0.set_sample_rate(samp_rate)
-        self.osmosdr_source_0.set_center_freq(94.1e6, 0)
+        self.osmosdr_source_0.set_center_freq(102.5e6, 0)
         self.osmosdr_source_0.set_freq_corr(0, 0)
         self.osmosdr_source_0.set_dc_offset_mode(0, 0)
         self.osmosdr_source_0.set_iq_balance_mode(0, 0)
@@ -89,7 +89,7 @@ class headless_FM(gr.top_block):
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, save_file_name, False)
         # End new line of code TODO: ADD TO GNU RADIO OUTPUT
         # self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, 'sunriver_radio', False)
-        self.blocks_file_sink_0.set_unbuffered(True)
+        self.blocks_file_sink_0.set_unbuffered(False) #TODO: changed this 
         self.audio_sink_0 = audio.sink(48000, '', True)
         self.analog_wfm_rcv_0 = analog.wfm_rcv(
         	quad_rate=480000,

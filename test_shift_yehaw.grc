@@ -1,6 +1,6 @@
 options:
   parameters:
-    author: Jacob van de Lindt
+    author: ''
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: rtl_sdr_test
+    id: default
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: First test of an RTL-SDR
+    title: Not titled yet
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -37,12 +37,66 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '.5'
+    value: '20'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [296, 12.0]
+    coordinate: [312, 12.0]
+    rotation: 0
+    state: true
+- name: center_freq
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: 500e3
+    step: '10000'
+    stop: 1e6
+    value: 990e3
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1040, 28.0]
+    rotation: 0
+    state: enabled
+- name: center_freq
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: ''
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1000'
+    stop: 16e3
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [896, 28.0]
+    rotation: 0
+    state: disabled
+- name: freq_shift
+  id: variable
+  parameters:
+    comment: ''
+    value: '125000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [424, 12.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -54,26 +108,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 12]
+    coordinate: [184, 12.0]
     rotation: 0
     state: enabled
-- name: analog_wfm_rcv_0
-  id: analog_wfm_rcv
-  parameters:
-    affinity: ''
-    alias: ''
-    audio_decimation: '10'
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    quad_rate: '480000'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [856, 204.0]
-    rotation: 0
-    state: true
 - name: audio_sink_0
   id: audio_sink
   parameters:
@@ -88,7 +125,48 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [904, 364.0]
+    coordinate: [1008, 508.0]
+    rotation: 180
+    state: true
+- name: band_pass_filter_0
+  id: band_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    decim: '12'
+    gain: '10'
+    high_cutoff_freq: center_freq + 15000
+    interp: '1'
+    low_cutoff_freq: center_freq - 15000
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fir_filter_ccf
+    width: 17.5e3
+    win: window.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [720, 244.0]
+    rotation: 0
+    state: disabled
+- name: blocks_complex_to_mag_0
+  id: blocks_complex_to_mag
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1224, 224.0]
     rotation: 0
     state: true
 - name: blocks_file_sink_0
@@ -106,9 +184,26 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [672, 276.0]
+    coordinate: [752, 476.0]
     rotation: 180
-    state: true
+    state: enabled
+- name: blocks_freqshift_cc_0
+  id: blocks_freqshift_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    freq: -freq_shift
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sample_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [464, 164.0]
+    rotation: 0
+    state: enabled
 - name: blocks_multiply_const_vxx_0
   id: blocks_multiply_const_vxx
   parameters:
@@ -124,9 +219,28 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [904, 292.0]
+    coordinate: [1304, 428.0]
     rotation: 180
     state: true
+- name: blocks_throttle_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: '48000'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1064, 428.0]
+    rotation: 180
+    state: enabled
 - name: low_pass_filter_0
   id: low_pass_filter
   parameters:
@@ -134,25 +248,103 @@ blocks:
     alias: ''
     beta: '6.76'
     comment: ''
-    cutoff_freq: '125000'
-    decim: '1'
-    gain: '1'
+    cutoff_freq: 15e3
+    decim: '12'
+    gain: '10'
     interp: '1'
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
     type: fir_filter_ccf
-    width: '25000'
+    width: 17.5e3
     win: window.WIN_HAMMING
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [448, 92.0]
+    coordinate: [712, 92.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_sink_x_0_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: '480000'
+    comment: ''
+    fc: 660e3
+    fftsize: '1024'
+    gui_hint: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '5'
+    showports: 'False'
+    showrf: 'False'
+    type: complex
+    wintype: window.WIN_RECTANGULAR
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1208, 76.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_sink_x_0_0_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: '480000'
+    comment: ''
+    fc: center_freq
+    fftsize: '1024'
+    gui_hint: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '5'
+    showports: 'False'
+    showrf: 'False'
+    type: complex
+    wintype: window.WIN_RECTANGULAR
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 444.0]
     rotation: 0
     state: true
-- name: osmosdr_source_0
-  id: osmosdr_source
+- name: rational_resampler_xxx_0
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: '50'
+    fbw: '0'
+    interp: '12'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: '[]'
+    type: ccf
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [992, 196.0]
+    rotation: 0
+    state: true
+- name: rtlsdr_source_0
+  id: rtlsdr_source
   parameters:
     affinity: ''
     alias: ''
@@ -326,7 +518,7 @@ blocks:
     dc_offset_mode7: '0'
     dc_offset_mode8: '0'
     dc_offset_mode9: '0'
-    freq0: 102.5e6
+    freq0: 'freq_shift + center_freq '
     freq1: 100e6
     freq10: 100e6
     freq11: 100e6
@@ -505,67 +697,23 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [104, 132.0]
-    rotation: 0
-    state: true
-- name: qtgui_sink_x_0
-  id: qtgui_sink_x
-  parameters:
-    affinity: ''
-    alias: ''
-    bw: samp_rate
-    comment: ''
-    fc: '0'
-    fftsize: '1024'
-    gui_hint: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    name: '""'
-    plotconst: 'True'
-    plotfreq: 'True'
-    plottime: 'True'
-    plotwaterfall: 'True'
-    rate: '10'
-    showports: 'False'
-    showrf: 'False'
-    type: complex
-    wintype: window.WIN_BLACKMAN_hARRIS
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [424, 276.0]
-    rotation: 0
-    state: true
-- name: rational_resampler_xxx_0
-  id: rational_resampler_xxx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    decim: '5'
-    fbw: '0'
-    interp: '1'
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    taps: '[]'
-    type: ccc
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [656, 116.0]
+    coordinate: [160, 140.0]
     rotation: 0
     state: true
 
 connections:
-- [analog_wfm_rcv_0, '0', blocks_multiply_const_vxx_0, '0']
+- [band_pass_filter_0, '0', rational_resampler_xxx_0, '0']
+- [blocks_complex_to_mag_0, '0', blocks_multiply_const_vxx_0, '0']
+- [blocks_freqshift_cc_0, '0', band_pass_filter_0, '0']
+- [blocks_freqshift_cc_0, '0', low_pass_filter_0, '0']
 - [blocks_multiply_const_vxx_0, '0', audio_sink_0, '0']
-- [blocks_multiply_const_vxx_0, '0', blocks_file_sink_0, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_throttle_0, '0']
+- [blocks_throttle_0, '0', blocks_file_sink_0, '0']
 - [low_pass_filter_0, '0', rational_resampler_xxx_0, '0']
-- [osmosdr_source_0, '0', low_pass_filter_0, '0']
-- [osmosdr_source_0, '0', qtgui_sink_x_0, '0']
-- [rational_resampler_xxx_0, '0', analog_wfm_rcv_0, '0']
+- [rational_resampler_xxx_0, '0', blocks_complex_to_mag_0, '0']
+- [rational_resampler_xxx_0, '0', qtgui_sink_x_0_0, '0']
+- [rtlsdr_source_0, '0', blocks_freqshift_cc_0, '0']
+- [rtlsdr_source_0, '0', qtgui_sink_x_0_0_0, '0']
 
 metadata:
   file_format: 1

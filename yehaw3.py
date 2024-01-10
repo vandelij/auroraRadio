@@ -5,8 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: First test of an RTL-SDR
-# Author: Jacob van de Lindt
+# Title: Not titled yet
 # GNU Radio version: 3.10.5.1
 
 from packaging.version import Version as StrictVersion
@@ -28,6 +27,7 @@ import sip
 from gnuradio import analog
 from gnuradio import audio
 from gnuradio import blocks
+import math
 from gnuradio import filter
 from gnuradio import gr
 from gnuradio.fft import window
@@ -43,12 +43,12 @@ import time
 
 from gnuradio import qtgui
 
-class rtl_sdr_test(gr.top_block, Qt.QWidget):
+class yehaw3(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "First test of an RTL-SDR", catch_exceptions=True)
+        gr.top_block.__init__(self, "Not titled yet", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("First test of an RTL-SDR")
+        self.setWindowTitle("Not titled yet")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -66,7 +66,7 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "rtl_sdr_test")
+        self.settings = Qt.QSettings("GNU Radio", "yehaw3")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -79,7 +79,9 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
+        self.samp_rate_0 = samp_rate_0 = 2400000
         self.samp_rate = samp_rate = 2400000
+        self.center_freq = center_freq = 125000000
         self.Volume = Volume = .5
 
         ##################################################
@@ -87,14 +89,14 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
         ##################################################
 
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
-                interpolation=1,
-                decimation=5,
+                interpolation=12,
+                decimation=50,
                 taps=[],
                 fractional_bw=0)
         self.qtgui_sink_x_0 = qtgui.sink_c(
             1024, #fftsize
             window.WIN_BLACKMAN_hARRIS, #wintype
-            0, #fc
+            700000, #fc
             samp_rate, #bw
             "", #name
             True, #plotfreq
@@ -114,7 +116,7 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
         )
         self.osmosdr_source_0.set_time_unknown_pps(osmosdr.time_spec_t())
         self.osmosdr_source_0.set_sample_rate(samp_rate)
-        self.osmosdr_source_0.set_center_freq(102.5e6, 0)
+        self.osmosdr_source_0.set_center_freq(center_freq, 0)
         self.osmosdr_source_0.set_freq_corr(0, 0)
         self.osmosdr_source_0.set_dc_offset_mode(0, 0)
         self.osmosdr_source_0.set_iq_balance_mode(0, 0)
@@ -125,52 +127,71 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
         self.osmosdr_source_0.set_antenna('', 0)
         self.osmosdr_source_0.set_bandwidth(0, 0)
         self.low_pass_filter_0 = filter.fir_filter_ccf(
-            1,
+            12,
             firdes.low_pass(
                 1,
                 samp_rate,
-                125000,
-                25000,
+                750000,
+                1000,
                 window.WIN_HAMMING,
                 6.76))
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(Volume)
+        self.blocks_freqshift_cc_0 = blocks.rotator_cc(2.0*math.pi*(-center_freq)/samp_rate)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_float*1, 'sunriver_radio', False)
         self.blocks_file_sink_0.set_unbuffered(True)
         self.audio_sink_0 = audio.sink(48000, '', True)
-        self.analog_wfm_rcv_0 = analog.wfm_rcv(
-        	quad_rate=480000,
-        	audio_decimation=10,
+        self.analog_am_demod_cf_0 = analog.am_demod_cf(
+        	channel_rate=(samp_rate/50),
+        	audio_decim=1,
+        	audio_pass=5000,
+        	audio_stop=5500,
         )
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.analog_wfm_rcv_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+        self.connect((self.analog_am_demod_cf_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+        self.connect((self.blocks_freqshift_cc_0, 0), (self.low_pass_filter_0, 0))
+        self.connect((self.blocks_freqshift_cc_0, 0), (self.qtgui_sink_x_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.audio_sink_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_file_sink_0, 0))
         self.connect((self.low_pass_filter_0, 0), (self.rational_resampler_xxx_0, 0))
-        self.connect((self.osmosdr_source_0, 0), (self.low_pass_filter_0, 0))
-        self.connect((self.osmosdr_source_0, 0), (self.qtgui_sink_x_0, 0))
-        self.connect((self.rational_resampler_xxx_0, 0), (self.analog_wfm_rcv_0, 0))
+        self.connect((self.osmosdr_source_0, 0), (self.blocks_freqshift_cc_0, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.analog_am_demod_cf_0, 0))
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "rtl_sdr_test")
+        self.settings = Qt.QSettings("GNU Radio", "yehaw3")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
 
         event.accept()
 
+    def get_samp_rate_0(self):
+        return self.samp_rate_0
+
+    def set_samp_rate_0(self, samp_rate_0):
+        self.samp_rate_0 = samp_rate_0
+
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 125000, 25000, window.WIN_HAMMING, 6.76))
+        self.blocks_freqshift_cc_0.set_phase_inc(2.0*math.pi*(-self.center_freq)/self.samp_rate)
+        self.low_pass_filter_0.set_taps(firdes.low_pass(1, self.samp_rate, 750000, 1000, window.WIN_HAMMING, 6.76))
         self.osmosdr_source_0.set_sample_rate(self.samp_rate)
-        self.qtgui_sink_x_0.set_frequency_range(0, self.samp_rate)
+        self.qtgui_sink_x_0.set_frequency_range(700000, self.samp_rate)
+
+    def get_center_freq(self):
+        return self.center_freq
+
+    def set_center_freq(self, center_freq):
+        self.center_freq = center_freq
+        self.blocks_freqshift_cc_0.set_phase_inc(2.0*math.pi*(-self.center_freq)/self.samp_rate)
+        self.osmosdr_source_0.set_center_freq(self.center_freq, 0)
 
     def get_Volume(self):
         return self.Volume
@@ -182,7 +203,7 @@ class rtl_sdr_test(gr.top_block, Qt.QWidget):
 
 
 
-def main(top_block_cls=rtl_sdr_test, options=None):
+def main(top_block_cls=yehaw3, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')
