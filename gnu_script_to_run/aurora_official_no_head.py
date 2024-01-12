@@ -41,7 +41,7 @@ class aurora_official_no_head(gr.top_block):
         ##################################################
         self.samp_rate = samp_rate = 2400000
         self.freq_shift = freq_shift = 125000000
-        self.center_freq = center_freq = 990e3
+        self.center_freq = center_freq = 0 #990e3
         self.Volume = Volume = 20
 
         ##################################################
@@ -73,7 +73,7 @@ class aurora_official_no_head(gr.top_block):
             firdes.low_pass(
                 10,
                 samp_rate,
-                15e3,
+                17e3,
                 17.5e3,
                 window.WIN_HAMMING,
                 6.76))
@@ -84,7 +84,7 @@ class aurora_official_no_head(gr.top_block):
         now = datetime.datetime.now() 
         now.strftime("%Y-%m-%d %H:%M:%S")
         date_and_time = now.strftime("%Y_%m_%d__%H_%M_%S")
-        save_directory = '/home/vandelij/Desktop/Aurora_Radio/test_recordings/'
+        save_directory = '/home/vandelij/Desktop/Aurora_Radio/Alaska_recordings/'
         save_file_name = save_directory + 'aurora_radio_recording_date_EST_' + date_and_time
         print('PWD:')  
         print(os.getcwd())
